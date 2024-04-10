@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# incus stop jellyfin
+# incus delete jellyfin
+
+# incus launch images:debian/12 jellyfin
+
+incus exec jellyfin -- apt-get -y install curl gnupg
+incus exec jellyfin -- add-apt-repository universe
+
+incus exec jellyfin -- bash -c 'mkdir -pv /etc/apt/keyrings'
+
+incus exec jellyfin -- bash -c 'rm -f /etc/apt/keyrings/jellyfin.gpg'
+incus exec jellyfin -- bash -c 'curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | gpg --dearmor -o /etc/apt/keyrings/jellyfin.gpg'
+
+cat <<EOF | incus exec jellyfin -- bash -c 'cat - > /etc/apt/sources.list.d/jellyfin.sources'
+Types: deb
+URIs: https://repo.jellyfin.org/debian
+Suites: bookworm
+Components: main
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/jellyfin.gpg
+EOF
