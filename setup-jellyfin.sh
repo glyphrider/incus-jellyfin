@@ -32,3 +32,5 @@ incus config device add jellyfin shows disk source=/srv/nfs/nas/media/television
 incus file delete jellyfin/etc/nginx/sites-enabled/default -v
 
 incus exec jellyfin -- systemctl restart nginx
+
+incus config set jellyfin boot.autostart=true
