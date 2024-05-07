@@ -27,7 +27,7 @@ incus file push ./jellyfin.key jellyfin/etc/nginx/ssl/jellyfin.key -pv
 incus file push ./ca.crt jellyfin/etc/nginx/ssl/ca.crt -pv
 
 incus config device add jellyfin movies disk source=/srv/nfs/nas/media/movies path=/media/movies
-incus config device add jellyfin shows disk source=/srv/nfs/nas/media/television path=/media/shows
+incus config device add jellyfin shows disk source=/srv/nfs/nas/media/shows path=/media/shows
 
 incus file delete jellyfin/etc/nginx/sites-enabled/default -v
 
