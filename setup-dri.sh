@@ -2,8 +2,8 @@
 
 set -x
 
-HOST_VIDEO = $(grep video /etc/group | cut -d: -f3)
-HOST_RENDER = $(grep render /etc/group | cut -d: -f3)
+HOST_VIDEO=$(grep video /etc/group | cut -d: -f3)
+HOST_RENDER=$(grep render /etc/group | cut -d: -f3)
 incus exec jellyfin groupadd -g $HOST_VIDEO host_video
 incus exec jellyfin groupadd -g $HOST_RENDER host_render
 incus exec jellyfin usermod -aG host_video jellyfin
